@@ -1,2 +1,1 @@
-# options_crypto
-Option pricing on cryptos
+# Option pricing on cryptos
