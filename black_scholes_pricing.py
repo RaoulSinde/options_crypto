@@ -22,8 +22,10 @@ def calc_d2(d1, t, sigma):
 
 
 def call_price(s0, k, r, t, d1, d2):
-    return s0 * norm(d1) - k * exp(- r * t) * norm(d2)
+    norm_dist = norm(0, 1)
+    return s0 * norm_dist.cdf(d1) - k * exp(- r * t) * norm_dist.cdf(d2)
 
 
 def put_price(s0, k, r, t, d1, d2):
-    return - s0 * norm(- d1) + k * exp(- r * t) * norm(- d2)
+    norm_dist = norm(0, 1)
+    return - s0 * norm_dist.cdf(- d1) + k * exp(- r * t) * norm_dist.cdf(- d2)
