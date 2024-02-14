@@ -7,25 +7,18 @@ It contains the following functions:
 
 - calc_d1: calculates d1, a parameter of the equation
 - calc_d2: calculates d2, a parameter of the equation
-- call_price: calculates the price of a call option
-- put_price: calculates the price of a put option
+- price: calculates the price of an option
 
 """
 
 
-def calc_d1(s, k, r, t, sigma):
-    return (1 / (sigma * sqrt(t))) * (log(s / k) + (r + (sigma ** 2) / 2) * t)
+def price(s, k, r, t, sigma, option_type):
 
-
-def calc_d2(d1, t, sigma):
-    return d1 - sigma * sqrt(t)
-
-
-def call_price(s, k, r, t, d1, d2):
     norm_dist = norm(0, 1)
-    return s * norm_dist.cdf(d1) - k * exp(- r * t) * norm_dist.cdf(d2)
+    d1 = (1 / (sigma * sqrt(t))) * (log(s / k) + (r + (sigma ** 2) / 2) * t)
+    d2 = d1 - sigma * sqrt(t)
 
-
-def put_price(s, k, r, t, d1, d2):
-    norm_dist = norm(0, 1)
-    return - s * norm_dist.cdf(- d1) + k * exp(- r * t) * norm_dist.cdf(- d2)
+    if option_type == 'call':
+        return s * norm_dist.cdf(d1) - k * exp(- r * t) * norm_dist.cdf(d2)
+    elif option_type == 'put':
+        return - s * norm_dist.cdf(- d1) + k * exp(- r * t) * norm_dist.cdf(- d2)

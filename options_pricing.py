@@ -18,6 +18,7 @@ class Option:
     and calc_d1_d2 of this class
 
     """
+
     def __init__(self, s, k, r, t, sigma, option_type):
         self.s = s
         self.k = k
@@ -26,18 +27,5 @@ class Option:
         self.option_type = option_type
         self.sigma = sigma
 
-        self.d1, self.d2 = self.calc_d1_d2()
-
-    def calc_d1_d2(self):
-        d1 = bs.calc_d1(self.s, self.k, self.r, self.t, self.sigma)
-        d2 = bs.calc_d2(d1, self.t, self.sigma)
-
-        return d1, d2
-
     def price(self):
-
-        if self.option_type == 'call':
-            return bs.call_price(self.s, self.k, self.r, self.t, self.d1, self.d2)
-
-        elif self.option_type == 'put':
-            return bs.put_price(self.s, self.k, self.r, self.t, self.d1, self.d2)
+        return bs.price(self.s, self.k, self.r, self.t, self.sigma, self.option_type)
