@@ -11,11 +11,8 @@ class Option:
         sigma is the volatility of the underlying asset
         option_type is the type of the option (call or put)
 
-    The class has also a method called price that returns the price of the option:
-        to do so a method calculates d1 and d2 that are used in the Black-Scholes formula
-
-    The formulas are implemented in the black_scholes_pricing.py file that is called in the method price
-    and calc_d1_d2 of this class
+    The class has also a method called price that returns the price of the option
+    The formula is implemented in the black_scholes_pricing.py file that is called in the method price
 
     """
 

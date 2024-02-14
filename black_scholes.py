@@ -1,15 +1,8 @@
 from scipy.stats import norm
 from math import exp, log, sqrt
 
-"""
-This module contains the functions to calculate the Black-Scholes option pricing formula. 
-It contains the following functions:
 
-- calc_d1: calculates d1, a parameter of the equation
-- calc_d2: calculates d2, a parameter of the equation
-- price: calculates the price of an option
-
-"""
+# This module contains the function to calculate the Black-Scholes option pricing formula.
 
 
 def price(s, k, r, t, sigma, option_type):
@@ -20,5 +13,6 @@ def price(s, k, r, t, sigma, option_type):
 
     if option_type == 'call':
         return s * norm_dist.cdf(d1) - k * exp(- r * t) * norm_dist.cdf(d2)
+
     elif option_type == 'put':
         return - s * norm_dist.cdf(- d1) + k * exp(- r * t) * norm_dist.cdf(- d2)
