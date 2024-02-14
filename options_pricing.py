@@ -4,7 +4,7 @@ import black_scholes as bs
 class Option:
     """
     This class defines an Option that has different characteristics:
-        s is the price of the underlying asset
+        st is the price of the underlying asset on the date t
         k is the strike price
         r is the risk-free interest rate
         t is the time to maturity in years
@@ -16,8 +16,8 @@ class Option:
 
     """
 
-    def __init__(self, s, k, r, t, sigma, option_type):
-        self.s = s
+    def __init__(self, st, k, r, t, sigma, option_type):
+        self.st = st
         self.k = k
         self.r = r
         self.t = t
@@ -25,4 +25,4 @@ class Option:
         self.sigma = sigma
 
     def price(self):
-        return bs.price(self.s, self.k, self.r, self.t, self.sigma, self.option_type)
+        return bs.price(self.st, self.k, self.r, self.t, self.sigma, self.option_type)
